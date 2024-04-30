@@ -1,0 +1,8 @@
+public_ip = i-0a7a5cc01526baf24_3.84.128.178
+private_ip = i-0a7a5cc01526baf24_172.31.26.187
+public_dns = i-0a7a5cc01526baf24_ec2-3-84-128-178.compute-1.amazonaws.com
+private_dns = i-0a7a5cc01526baf24_ip-172-31-26-187.ec2.internal
+key_name = i-0a7a5cc01526baf24_ubuntu-key
+security_groups = i-0a7a5cc01526baf24_launch-wizard-3
+vpc_security_group_ids =  i-0a7a5cc01526baf24_sg-0d92bd4751575c88d
+ 

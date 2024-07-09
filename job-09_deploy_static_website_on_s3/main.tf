@@ -7,7 +7,7 @@ resource "random_string" "random" {
 
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket ="static-${random_string.random.result}"
+  bucket ="static-dev-${random_string.random.result}"
 
   //force_destroy = yes
 }

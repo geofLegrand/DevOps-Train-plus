@@ -13,6 +13,7 @@ terraform {
 # Configure the AWS Provider
 
 provider "aws" {
-  alias = "acm_provider"
+  //alias = "acm_provider"
   region = "us-east-1"
+  
 }

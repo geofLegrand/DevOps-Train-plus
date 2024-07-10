@@ -7,6 +7,7 @@ resource "random_string" "random" {
 
 
 resource "aws_s3_bucket" "my_bucket" {
+   provider = aws.acm_provider
   bucket ="static-dev-${random_string.random.result}"
 
   //force_destroy = yes
@@ -14,6 +15,7 @@ resource "aws_s3_bucket" "my_bucket" {
 
 
 resource "aws_s3_bucket_public_access_block" "buket_access" {
+   provider = aws.acm_provider
    bucket = aws_s3_bucket.my_bucket.id
    restrict_public_buckets = false
    block_public_policy = false
@@ -23,6 +25,7 @@ resource "aws_s3_bucket_public_access_block" "buket_access" {
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
+   provider = aws.acm_provider
    bucket = aws_s3_bucket.my_bucket.id
   #  lifecycle {
      
@@ -43,6 +46,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 
 
 resource "null_resource" "my_resource" {
+   provider = aws.acm_provider
    provisioner "local-exec" {
      command = <<-EOF
         aws s3 cp --recursive web s3://${aws_s3_bucket.my_bucket.bucket}/
@@ -54,6 +58,7 @@ resource "null_resource" "my_resource" {
 
 
 resource "aws_s3_bucket_website_configuration" "config_web" {
+   provider = aws.acm_provider
     bucket = aws_s3_bucket.my_bucket.id
    index_document {
      suffix = "index.html"

@@ -1,13 +1,14 @@
 module "my_vpc_module" {
-  source = "github.com/geofLegrand/vpc_module"
+    source  = "app.terraform.io/KeDigit/vpc-module/cloud"
+  version = "1.0.0"
 
   vpc_cidr             = "172.120.0.0/16"
   internet_gw          = true
   enable_dns_hostnames = true
   enable_dns_support   = true
-  nbr_azs              = 3
-  nbr_prv_sub_blocks   = 9
-  nbr_pub_sub_blocks   = 3
+  nbr_azs              = 2
+  nbr_prv_sub_blocks   = 4
+  nbr_pub_sub_blocks   = 2
 
   tag_environment      = "dev"
   tag_vpc_name         = "dev-vpc"

@@ -6,7 +6,8 @@ this module will allow you to create vpcs up to Three-tier
 
 ```hcl
 module "my_vpc_module" {
-  source = "github.com/geofLegrand/vpc_module"
+  source               = "app.terraform.io/KeDigit/vpc-module/cloud"
+  version              = "1.0.0
 
   vpc_cidr             = "172.120.0.0/16"
   internet_gw          = true

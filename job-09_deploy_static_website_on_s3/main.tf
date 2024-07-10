@@ -46,7 +46,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 
 
 resource "null_resource" "my_resource" {
-   provider = aws.acm_provider
+
    provisioner "local-exec" {
      command = <<-EOF
         aws s3 cp --recursive web s3://${aws_s3_bucket.my_bucket.bucket}/

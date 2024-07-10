@@ -57,7 +57,7 @@ variable "enable_dns_support" {
   type    = bool
 }
 
-variable "tag_environment" {}
+variable "tag_environment" { type = string }
 variable "internet_gw" {}
 variable "tag_vpc_name" {}
 variable "region" {

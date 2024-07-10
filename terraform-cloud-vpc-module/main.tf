@@ -1,10 +1,11 @@
 module "my_subnets" {
-  source             = "./subnets"
+  source             = "./generate-subnets"
   vpc_cidr           = var.vpc_cidr
   nbr_azs            = var.nbr_azs
   nbr_prv_sub_blocks = var.nbr_prv_sub_blocks
   nbr_pub_sub_blocks = var.nbr_pub_sub_blocks
   region             = var.region
+
 }
 
 locals {
@@ -109,7 +110,6 @@ resource "aws_subnet" "public_subnets_az" {
   }
   depends_on = [module.my_subnets]
 }
-
 // Private subnets 1
 resource "aws_subnet" "private_subnets_az1" {
   count             = length(module.my_subnets.priv_subnets_az1)
@@ -168,7 +168,6 @@ resource "aws_route_table_association" "ass_sb_pub_az" {
   route_table_id = aws_route_table.public_route_table.id
   depends_on     = [aws_subnet.public_subnets_az]
 }
-
 // associate my private subnet 1 to route table
 resource "aws_route_table_association" "priv_rt_az" {
   count          = length(module.my_subnets.priv_subnets_az1)
@@ -176,7 +175,6 @@ resource "aws_route_table_association" "priv_rt_az" {
   route_table_id = aws_route_table.route_table_az[0].id
   depends_on     = [aws_subnet.private_subnets_az1]
 }
-
 // associate my private subnet 2 to route table
 resource "aws_route_table_association" "priv_rt_az2" {
   count          = length(module.my_subnets.priv_subnets_az2)
@@ -184,7 +182,6 @@ resource "aws_route_table_association" "priv_rt_az2" {
   route_table_id = aws_route_table.route_table_az[1].id
   depends_on     = [aws_subnet.private_subnets_az2]
 }
-
 // associate my private subnet 3 to route table
 resource "aws_route_table_association" "priv_rt_az3" {
   count          = length(module.my_subnets.priv_subnets_az3)
@@ -198,16 +195,4 @@ resource "aws_route_table_association" "priv_rt_az4" {
   subnet_id      = aws_subnet.private_subnets_az4[count.index].id
   route_table_id = aws_route_table.route_table_az[3].id
   depends_on     = [aws_subnet.private_subnets_az4]
-}
-output "vpc_id" {
-   value = aws_vpc.my_aws_vpc.id
-}
-output "pub_subnets" {
-  value = module.my_subnets.pub_subnets
-}
-output "priv_subnets_az1" {
-  value = module.my_subnets.priv_subnets_az1
-}
-output "priv_subnets_az2" {
-  value = module.my_subnets.priv_subnets_az2
 }

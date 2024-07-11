@@ -12,7 +12,7 @@ module "my_vpc_module" {
 
   tag_environment      = "dev"
   tag_vpc_name         = "dev-vpc"
-  type_nat_gateway     = "1 per AZ"
+  type_nat_gateway     = "1 in AZ"
   region               = "us-east-1"
 
 
